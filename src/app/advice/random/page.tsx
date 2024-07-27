@@ -17,7 +17,7 @@ export interface RandomAdvice {
 const RandomAdvice = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [advice, setAdvice] = useState<RandomAdvice>();
+  const [advice, setAdvice] = useState<RandomAdvice | ErrorMessage>();
 
   const fetcher = (args: string) =>
     fetch(args).then((res) => {
@@ -25,7 +25,7 @@ const RandomAdvice = () => {
       return res.json();
     });
 
-  const { data, error } = useSWR<RandomAdvice, ErrorMessage>(
+  const { data, error } = useSWR<RandomAdvice | ErrorMessage>(
     shouldFetch ? 'https://api.adviceslip.com/advice' : null,
     fetcher,
   );
@@ -46,14 +46,13 @@ const RandomAdvice = () => {
   return (
     <section className="max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8">
       <h1 className="text-xl font-bold text-neon-green mt-32">Random Advice</h1>
-
       <div
         className="flex flex-col max-h-[15rem] w-11/12
       justify-start basis-3/4 gap-4
       bg-dark-grayish-blue rounded-md relative font-manrope p-4  text-center drop-shadow-xl md:w-7/12"
       >
         <h2 className=" text-neon-green  text-center font-semibold text-base">
-          {advice && `# ${advice?.slip.id}`}
+          {advice && 'slip' in advice && `# ${advice?.slip.id}`}
         </h2>
 
         <p className="w-full flex justify-center basis-2/5 items-start text-quote-size text-neon-green  m-auto font-semibold">
@@ -63,13 +62,13 @@ const RandomAdvice = () => {
             <span className="text-light-cyan">
               There is currently no advice!
             </span>
-          ) : !error ? (
-            <span> &#8220;{advice?.slip.advice}&#8221;</span>
-          ) : (
+          ) : advice && 'message' in advice ? (
             <span className={'text-red-600'}>
-              Oops, something went wrong. Please try again!
+              Something went wrong. Please try again!
               {error?.message.text}
             </span>
+          ) : (
+            <span> &#8220;{advice?.slip.advice}&#8221;</span>
           )}
         </p>
       </div>

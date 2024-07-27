@@ -3,17 +3,14 @@
 import MagnifyingGlass from '@/app/components/Icons/MagnifyingGlass';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { ErrorMessage, RandomAdvice } from '../random/page';
 import SearchBox from './components/SearchBox';
 import SearchResults from './components/SearchResult';
-
-export interface ErrorMessage {
-  message: { type: string; text: string };
-}
 
 export interface SearchAdviceResponse {
   total_results: number;
   query: string;
-  slips: { id: number; advice: string }[];
+  slips: RandomAdvice[];
 }
 
 // todo: to many states, find better solution
