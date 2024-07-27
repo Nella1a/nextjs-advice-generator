@@ -1,16 +1,22 @@
-type Props = {
+const SearchBox = ({
+  searchTerm,
+  onChangeHandler,
+  onEnterHandler,
+}: {
   searchTerm: string;
   onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-const SearchBox = (props: Props) => {
+  onEnterHandler?: () => void;
+}) => {
   return (
     <input
       id="searchAdvice"
       type="search"
-      value={props.searchTerm}
-      onChange={props.onChangeHandler}
-      className={'w-full h-10 text-black pl-2'}
+      value={searchTerm}
+      onChange={onChangeHandler}
+      className={'w-full h-10 text-black px-2'}
+      onKeyDown={(event) =>
+        onEnterHandler && event.key === 'Enter' && onEnterHandler()
+      }
     />
   );
 };
