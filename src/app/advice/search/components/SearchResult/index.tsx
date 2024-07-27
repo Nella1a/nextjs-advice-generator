@@ -1,7 +1,3 @@
-// type Props = {
-//   result: SearchAdviceType;
-// };
-
 const SearchResults = ({ result }: any) => {
   return (
     <article className="border-2 flex flex-col justify-center items-center text-white mt-8 mx-4 gap-6 w-11/12 md:w-6/12">
