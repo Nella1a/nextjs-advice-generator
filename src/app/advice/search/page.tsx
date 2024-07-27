@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/app/components/Button';
+import MagnifyingGlass from '@/app/components/Icons/MagnifyingGlass';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import SearchBox from './components/SearchBox';
@@ -41,12 +41,14 @@ const SearchAdvice = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (!searchTerm) setAdvice(undefined);
+  }, [searchTerm]);
+
   const onClickHandler = () => {
-    if (searchTerm) {
-      console.log('onlick');
-      setSearch(true);
-    }
+    if (searchTerm) setSearch(true);
   };
+
   console.log('data: ', data);
   console.log('advice', advice);
   const onChangeHandler = (event: {
@@ -59,9 +61,16 @@ const SearchAdvice = () => {
     <section className="border-2 max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8">
       <h1 className="text-xl font-bold text-neon-green mt-32">Search Advice</h1>
       <div className="border-2 flex justify-center items-center w-11/12 md:w-6/12">
-        <SearchBox searchTerm={searchTerm} onChangeHandler={onChangeHandler} />
-        <button onClick={onClickHandler}>
-          <Button text={'Search'} addCss="w-14 h-10" />
+        <SearchBox
+          searchTerm={searchTerm}
+          onChangeHandler={onChangeHandler}
+          onEnterHandler={onClickHandler}
+        />
+        <button
+          onClick={onClickHandler}
+          className={`w-14 h-10 flex justify-center items-center text-center text-dark-blue font-manrope bg-neon-green font-bold hover:bg-light-cyan`}
+        >
+          <MagnifyingGlass />
         </button>
       </div>
 
