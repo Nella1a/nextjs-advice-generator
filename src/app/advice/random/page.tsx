@@ -8,8 +8,13 @@ export interface ErrorMessage {
   message: { type: string; text: string };
 }
 
+export interface Advice {
+  id: number;
+  advice: string;
+}
+
 export interface RandomAdviceResponse {
-  slip: { id: number; advice: string };
+  slip: Advice;
 }
 const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
