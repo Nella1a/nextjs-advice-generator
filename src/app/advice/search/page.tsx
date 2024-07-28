@@ -3,14 +3,20 @@
 import MagnifyingGlass from '@/app/components/Icons/MagnifyingGlass';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { Advice, ErrorMessage, RandomAdviceResponse } from '../random/page';
+import { ErrorMessage } from '../random/page';
 import SearchBox from './components/SearchBox';
 import SearchResults from './components/SearchResult';
+
+export interface AdviceToSave {
+  id: number;
+  advice: number;
+  toSave?: boolean;
+}
 
 export interface SearchAdviceResponse {
   total_results: number;
   query: string;
-  slips: Advice[];
+  slips: AdviceToSave[];
 }
 
 // todo: find better solution for conditional fetch
