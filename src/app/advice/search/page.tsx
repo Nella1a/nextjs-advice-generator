@@ -3,14 +3,14 @@
 import MagnifyingGlass from '@/app/components/Icons/MagnifyingGlass';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { ErrorMessage, RandomAdvice } from '../random/page';
+import { ErrorMessage, RandomAdviceResponse } from '../random/page';
 import SearchBox from './components/SearchBox';
 import SearchResults from './components/SearchResult';
 
 export interface SearchAdviceResponse {
   total_results: number;
   query: string;
-  slips: RandomAdvice[];
+  slips: RandomAdviceResponse[];
 }
 
 // todo: to many states, find better solution
@@ -55,8 +55,10 @@ const SearchAdvice = () => {
   };
 
   return (
-    <section className="border-2 max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8">
-      <h1 className="text-xl font-bold text-neon-green mt-32">Search Advice</h1>
+    <section className="border-2 max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8 overflow-auto">
+      <h1 className="text-3xl font-bold text-light-cyan mt-16">
+        Search Advice
+      </h1>
       <div className="border-2 flex justify-center items-center w-11/12 md:w-6/12">
         <SearchBox
           searchTerm={searchTerm}
@@ -65,7 +67,7 @@ const SearchAdvice = () => {
         />
         <button
           onClick={onClickHandler}
-          className={`w-14 h-10 flex justify-center items-center text-center text-dark-blue font-manrope bg-neon-green font-bold hover:bg-light-cyan`}
+          className={`w-14 h-10 flex justify-center items-center text-center text-dark-blue font-manrope bg-neon-green font-bold rounded-r-xl hover:bg-light-cyan`}
         >
           <MagnifyingGlass />
         </button>
