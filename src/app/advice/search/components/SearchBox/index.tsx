@@ -13,7 +13,7 @@ const SearchBox = ({
       type="search"
       value={searchTerm}
       onChange={onChangeHandler}
-      className={'w-full h-10 text-black px-2'}
+      className={'w-full h-10 text-black px-2 rounded-l-lg'}
       onKeyDown={(event) =>
         onEnterHandler && event.key === 'Enter' && onEnterHandler()
       }
