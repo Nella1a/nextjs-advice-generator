@@ -18,7 +18,9 @@ const config: Config = {
     boxShadow: {
       '3xl': '0 0px 30px 5px rgba(82, 225, 168, 0.5)',
     },
-    // fontFamily: {},
+    fontFamily: {
+      manrope: ['manrope', 'system-ui'],
+    },
   },
   plugins: [],
 };
