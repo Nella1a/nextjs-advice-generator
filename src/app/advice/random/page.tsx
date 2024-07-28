@@ -56,7 +56,7 @@ const RandomAdvice = () => {
       justify-start basis-3/4 gap-4
       bg-dark-grayish-blue rounded-xl relative p-6  text-center drop-shadow-xl md:w-7/12"
       >
-        <h2 className=" text-neon-green  tracking-[0.2rem] text-center">
+        <h2 className=" text-neon-green tracking-[0.2rem] text-center">
           {data && 'slip' in data && `ADVICE #${data?.slip.id}`}
         </h2>
         <p className="w-full flex justify-center basis-2/5 items-start text-[20px] text-light-cyan m-auto font-semibold">

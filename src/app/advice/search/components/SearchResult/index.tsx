@@ -51,7 +51,7 @@ const SearchResults = ({ result }: { result: SearchAdviceResponse }) => {
                   />
                 </span>
                 <span className={'text-neon-green font-bold'}>
-                  #{advice.id}{' '}
+                  #{advice.id}
                 </span>
                 {advice.advice}
               </div>
