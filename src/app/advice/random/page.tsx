@@ -11,23 +11,18 @@ export interface ErrorMessage {
 export interface RandomAdviceResponse {
   slip: { id: number; advice: string };
 }
+const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
-// todo: to many states, find better solution
+// todo: dont show previous advice
 
 const RandomAdvice = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [advice, setAdvice] = useState<RandomAdviceResponse | ErrorMessage>();
-
-  const fetcher = (args: string) =>
-    fetch(args).then((res) => {
-      setShouldFetch(false);
-      return res.json();
-    });
 
   const { data, error } = useSWR<RandomAdviceResponse | ErrorMessage>(
     shouldFetch ? 'https://api.adviceslip.com/advice' : null,
     fetcher,
+    { keepPreviousData: true },
   );
 
   const onClickHandler = () => {
@@ -40,9 +35,12 @@ const RandomAdvice = () => {
   };
 
   useEffect(() => {
-    if (data) setAdvice(data);
+    if (data) {
+      setShouldFetch(false);
+    }
   }, [data]);
-
+  console.log('data: ', data);
+  console.log('shouldfetch: ', shouldFetch);
   return (
     <section className="max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8">
       <h1 className="text-3xl font-bold text-light-cyan mt-16">
@@ -54,23 +52,22 @@ const RandomAdvice = () => {
       bg-dark-grayish-blue rounded-xl relative p-6  text-center drop-shadow-xl md:w-7/12"
       >
         <h2 className=" text-neon-green  tracking-[0.2rem] text-center">
-          {advice && 'slip' in advice && `ADVICE #${advice?.slip.id}`}
+          {data && 'slip' in data && `ADVICE #${data?.slip.id}`}
         </h2>
-
         <p className="w-full flex justify-center basis-2/5 items-start text-[20px] text-light-cyan m-auto font-semibold">
-          {isLoading ? (
-            <span>is loading...</span>
-          ) : !advice ? (
+          {!data ? (
             <span className="text-light-cyan">
               There is currently no advice!
             </span>
-          ) : advice && 'message' in advice ? (
+          ) : isLoading ? (
+            <span>is loading...</span>
+          ) : data && 'message' in data ? (
             <span className={'text-red-600'}>
               Something went wrong. Please try again!
               {error?.message.text}
             </span>
           ) : (
-            <span> &#8220;{advice?.slip.advice}&#8221;</span>
+            <span> &#8220;{data?.slip.advice}&#8221;</span>
           )}
         </p>
         <div className="flex justify-center">
