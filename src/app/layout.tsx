@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-dark-blue flex flex-col`}>
+      <body
+        className={`${inter.className} bg-dark-blue flex flex-col font-manrope`}
+      >
         <header className="h-12 bg-dark-grayish-blue">
           <Navigation />
         </header>
