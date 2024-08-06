@@ -13,6 +13,9 @@ const Navigation = () => {
         <li className="hover:text-light-cyan">
           <Link href="/advice/random">Random</Link>
         </li>
+        <li className="hover:text-light-cyan">
+          <Link href="/saved">Saved</Link>
+        </li>
       </ul>
     </nav>
   );
