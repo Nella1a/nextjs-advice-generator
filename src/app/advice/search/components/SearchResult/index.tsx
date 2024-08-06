@@ -1,12 +1,28 @@
 import Heart from '@/app/components/Icons/Heart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AdviceToSave, SearchAdviceResponse } from '../../page';
 import Pagination from '../Pagination';
 
 const SearchResults = ({ result }: { result: SearchAdviceResponse }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [initialResult, setInitialResult] = useState(result?.slips);
+  const [toSave, setToSave] = useState<AdviceToSave>();
   const pageSize = 3;
+
+  useEffect(() => {
+    if (toSave?.toSave) {
+      fetch('/api/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(toSave),
+      })
+        .then((resp) => resp.json())
+        .then((result) => console.log(result))
+        .catch((err) => console.log(err));
+    }
+  }, [toSave]);
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -21,11 +37,15 @@ const SearchResults = ({ result }: { result: SearchAdviceResponse }) => {
     return items.slice(startIndex, startIndex + pageSize);
   };
 
-  const saveAdviceHandler = (id: number, index: number) => {
+  const saveAdviceHandler = (adv: AdviceToSave, index: number) => {
     const newResult = initialResult.map((advice) => {
-      if (advice.id === id) {
-        if (advice?.toSave) advice.toSave = !true;
-        else advice.toSave = true;
+      if (advice.id === adv.id) {
+        if (advice?.toSave) {
+          advice.toSave = !true;
+        } else {
+          advice.toSave = true;
+          setToSave(adv);
+        }
       }
       return advice;
     });
@@ -42,7 +62,7 @@ const SearchResults = ({ result }: { result: SearchAdviceResponse }) => {
                 key={`${advice.id}`}
                 className="flex flex-col items-center gap-2 text-white-500  bg-dark-grayish-blue rounded-xl p-4 drop-shadow-xl w-full min-h-28 relative"
               >
-                <span onClick={() => saveAdviceHandler(advice.id, index)}>
+                <span onClick={() => saveAdviceHandler(advice, index)}>
                   <Heart
                     className={`size-6 absolute top-2 right-3`}
                     fill={`${
