@@ -1,5 +1,6 @@
 const Pagination = ({
   totalSearchResult,
+  currentPage,
   pageSize,
   onPageChange,
 }: {
@@ -19,7 +20,12 @@ const Pagination = ({
             key={page}
             className="text-light-cyan cursor-pointer hover:text-neon-green "
           >
-            <a onClick={() => onPageChange(page)}>{page}</a>
+            <a
+              onClick={() => onPageChange(page)}
+              className={`${currentPage === page && 'text-neon-green'}`}
+            >
+              {page}
+            </a>
           </li>
         ))}
       </ul>
