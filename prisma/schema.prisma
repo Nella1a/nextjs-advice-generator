@@ -25,7 +25,7 @@ username String
 model Advice {
   id Int @id @default(autoincrement())
   externalId Int @unique
-  text String
+  advice String
   created DateTime @default(now()) @db.Timestamptz(6)
   user Int
 @@map("advice")
