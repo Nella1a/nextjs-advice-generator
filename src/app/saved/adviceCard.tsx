@@ -1,21 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import XMark from '../components/Icons/XMark';
 import { SavedAdvice } from './page';
 
 const AdviceCard = ({ advice }: { advice: SavedAdvice[] }) => {
   const [toDelete, setToDelete] = useState<SavedAdvice>();
   const [filteredAdvice, setFilteredAdvice] = useState(advice);
+  const [remove, setRemove] = useState(false);
 
   const deleteAdviceHandler = (toRemove: SavedAdvice) => {
     setToDelete(toRemove);
-
-    const newAdvice = filteredAdvice.filter(
-      (advice) => advice.externalId !== toDelete?.externalId,
-    );
-    setFilteredAdvice(newAdvice);
+    setRemove(true);
   };
+
+  useEffect(() => {
+    if (remove) {
+      fetch('/api/update', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(toDelete),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.status === 200) {
+            const newAdvice = filteredAdvice.filter(
+              (advice) => advice.externalId !== toDelete?.externalId,
+            );
+            setFilteredAdvice(newAdvice);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    setRemove(false);
+  }, [toDelete, filteredAdvice, remove]);
 
   return (
     <>

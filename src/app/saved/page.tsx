@@ -1,5 +1,4 @@
 import prisma from '../../../prisma';
-import XMark from '../components/Icons/XMark';
 import AdviceCard from './adviceCard';
 
 export interface SavedAdvice {
@@ -13,11 +12,9 @@ export interface SavedAdvice {
 const SavedAdvices = async () => {
   const savedAdvice = await prisma.advice.findMany({
     where: {
-      user: 2,
+      user: 1,
     },
   });
-
-  const deleteAdviceHandler = () => {};
 
   return (
     <section className="max-w-screen-lg m-auto h-screen flex flex-col items-center justify-start gap-8">
