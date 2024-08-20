@@ -1,3 +1,4 @@
+'use client';
 import Heart from '@/app/components/Icons/Heart';
 import { useEffect, useState } from 'react';
 import { AdviceToSave, SearchAdviceResponse } from '../../page';
