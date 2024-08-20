@@ -9,8 +9,10 @@ import SearchResults from './components/SearchResult';
 
 export interface AdviceToSave {
   id: number;
-  advice: number;
+  advice: string;
   toSave?: boolean;
+  date: string;
+  user?: number;
 }
 
 export interface SearchAdviceResponse {
