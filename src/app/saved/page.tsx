@@ -22,7 +22,7 @@ const SavedAdvices = async () => {
         Saved Advices
       </h1>
       <article className="flex flex-col justify-center items-center text-white mt-4 mx-4 gap-6 w-11/12 md:w-6/12">
-        <AdviceCard advice={savedAdvice} />
+        <AdviceCard advice={savedAdvice?.length > 0 ? savedAdvice : []} />
       </article>
     </section>
   );
