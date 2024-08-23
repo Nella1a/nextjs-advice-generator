@@ -1,8 +1,10 @@
 #!/bin/bash
-# difference between /bin/sh and /bin/bash ??? different syntax
-# get some more info about netcat? why needed --> google
 
-set -ex
+# -x: enables debugging mode,causes Bash to print each command that it executes to the terminal, preceded by a + sign
+set -x
+
+# script to exit immediately when any command in the script fails
+set -e
 
 # Set DATABASE_HOST to 'postgresdb' if not set
 DATABASE_HOST="${DATABASE_HOST:-postgresdb}"
@@ -20,7 +22,9 @@ echo "Wait for database to be ready.."
 # Wait for the database to start using wait-for.sh script
 sh -c "./wait-for.sh ${DATABASE_HOST}:5432"
 
-# Check if the wait-for.sh script was successful
+# Check if the wait-for.sh script was successful by
+# checking the exit code "$?"" of the previous command
+# value of 0 indicates success
 if [ $? -ne 0 ]; then
     echo "Timeout waiting for the database. Exiting."
     exit 1

@@ -2,49 +2,6 @@
 
 version: '3.7'
 
-# services:
-#   frontend:
-#     build:
-#       context: ./
-#       dockerfile: ./docker/context/Dockerfile
-#     depends_on:
-#       postgresdb:
-#         condition: service_healthy
-#         restart: true
-#     environment:
-#       NODE_ENV: development
-#     ports:
-#       - 3000:3000
-
-#   postgresdb:
-#     image: postgres:alpine
-#     healthcheck:
-#       test: ['CMD-SHELL', 'pg_isready -U admin -d adviceapp']
-#       interval: 10s
-#       retries: 5
-#       start_period: 30s
-#       timeout: 10s
-#     restart: always
-#     # set shared memory limit when using docker-compose
-#     shm_size: 128mb
-#     environment:
-#       POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
-#       POSTGRES_USER: admin
-#       POSTGRES_DB: adviceapp
-#     ports:
-#       - 5432:5432
-#     secrets:
-#       - db-pass
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-
-# secrets:
-#   db-pass:
-#     file: docker/secrets/db-pass.txt
-
-# volumes:
-#   db-data:
-
 services:
   frontend:
     build:
