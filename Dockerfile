@@ -1,8 +1,9 @@
 FROM node:21
 
-# ENV NODE_ENV production
-# ENV NODE_PATH /opt/frontend/node_modules
-# ENV PATH $NODE_PATH/.bin:$PATH
+ENV NODE_ENV production
+ENV NODE_PATH /opt/frontend/node_modules
+ENV PATH $NODE_PATH/.bin:$PATH
+
 
 RUN mkdir -p /opt/frontend
 WORKDIR /opt/frontend
