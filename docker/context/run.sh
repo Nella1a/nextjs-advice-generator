@@ -34,9 +34,6 @@ echo "Running database migrations..."
 # Run Prisma migrations
 npx prisma migrate dev
 
-echo "Disabling Next.js telemetry..."
-# Disable Next.js telemetry
-npx next telemetry disable
 
 echo "Starting the application..."
 # Start the application
