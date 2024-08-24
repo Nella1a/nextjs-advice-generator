@@ -1,4 +1,7 @@
-# see https://docs.docker.com/compose/use-secrets/
+# Base configuration
+
+# use docker-compose.override.yaml for local overrides
+# The .env file contains the variables referenced such aus ${DATABASE_URL}
 
 version: '3.7'
 
@@ -8,7 +11,6 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     environment:
-      NODE_ENV: development
       DATABASE_HOST: postgresdb
     ports:
       - 3000:3000
@@ -26,8 +28,6 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
       POSTGRES_USER: admin
       POSTGRES_DB: adviceapp
-    ports:
-      - 5432:5432
     secrets:
       - db-pass
     networks:
@@ -35,9 +35,10 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
-secrets:
-  db-pass:
-    file: docker/secrets/db-pass.txt
+# Define secrets in the override file for your system, e.g.:
+# secrets:
+#  db-pass:
+#    file: docker/secrets/db-pass.txt
 
 volumes:
   db-data:

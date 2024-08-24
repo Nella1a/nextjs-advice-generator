@@ -1,0 +1,30 @@
+# Overrides for the development environment
+
+# see https://docs.docker.com/compose/use-secrets/
+# The .env file contains the variables referenced such aus ${DATABASE_URL}
+
+version: '3.7'
+
+services:
+  frontend:
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: development # env variable to select development environment settings
+    volumes:
+      # create bind mounts for /src and /conf so that changes are seen without rebuild
+      - ./src:/opt/frontend/src:ro
+      - ./public:/opt/frontend/public:ro
+      - ./tsconfig.json:/opt/frontend/tsconfig.json:ro
+      - ./package.json:/opt/frontend/package.json:ro
+      - ./next.config.mjs:/opt/frontend/next.config.mjs:ro
+      - ./postcss.config.js:/opt/frontend/postcss.config.js:ro
+      - ./tailwind.config.ts:/opt/frontend/tailwind.config.ts:ro
+
+  postgresdb:
+    ports:
+      # expose database in development
+      - 15432:5432
+
+secrets:
+  db-pass:
+    file: docker/secrets/db-pass.txt
