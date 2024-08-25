@@ -6,8 +6,8 @@ set -x
 # script to exit immediately when any command in the script fails
 set -e
 
-# Set DATABASE_HOST to 'postgresdb' if not set
-DATABASE_HOST="${DATABASE_HOST:-postgresdb}"
+# Set DATABASE_HOST to 'advice_app_db' if not set
+DATABASE_HOST="${DATABASE_HOST:-advice_app_db}"
 
 # Set the NPM command based on the environment
 if [ $NODE_ENV = "production" ]; then

@@ -11,15 +11,15 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     environment:
-      DATABASE_HOST: postgresdb
+      DATABASE_HOST: advice_app_db
     ports:
       - 3000:3000
     networks:
       - advice-network
     depends_on:
-      - postgresdb
+      - advice_app_db
 
-  postgresdb:
+  advice_app_db:
     image: postgres:alpine
     restart: always
     # set shared memory limit when using docker-compose
@@ -27,7 +27,7 @@ services:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
       POSTGRES_USER: admin
-      POSTGRES_DB: adviceapp
+      POSTGRES_DB: advice_app_db
     secrets:
       - db-pass
     networks:

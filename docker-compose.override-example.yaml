@@ -20,7 +20,7 @@ services:
       - ./postcss.config.js:/opt/frontend/postcss.config.js:ro
       - ./tailwind.config.ts:/opt/frontend/tailwind.config.ts:ro
 
-  postgresdb:
+  advice_app_db:
     ports:
       # expose database in development
       - 15432:5432
