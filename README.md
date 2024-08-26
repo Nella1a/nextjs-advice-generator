@@ -8,10 +8,12 @@ I extended the challenge to enhance my skills in working with APIs and dockerizi
 
 ### Clone the repository
 
+First, clone the repository. Then, you can run the application either using Docker or locally (without Docker).
+
 ```
 git clone https://github.com/Nella1a/nextjs-advice-generator.git
 ```
-You can run the application with Docker or without Docker: 
+
 
 #### Run with Docker 
 
@@ -36,3 +38,16 @@ docker compose up
 ```
 
 #### Run Local (without Docker)
+
+Ensure that you have a PostgreSQL instance running, then create a database and user.
+
+```sql
+ CREATE DATABASE mydatabase;
+ CREATE USER myuser WITH PASSWORD 'mypassword';
+ GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
+```
+
+     
+
+**Note:** The last command grants the user myuser full access to the database mydatabase.
+
