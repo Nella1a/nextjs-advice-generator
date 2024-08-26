@@ -72,3 +72,12 @@ npm run start
 
 Open <http://localhost:3000> on your browser.
 
+## Technologies
+- Nextjs
+- TypeScript
+- PostgreSQL
+- Prisma
+- Tailwind CSS
+- Docker
+
+  
