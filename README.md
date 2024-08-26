@@ -8,4 +8,23 @@ I extended the challenge to enhance my skills in working with APIs and dockerizi
 
 
 
+ 1. Make sure that you have a reasonably recent version of docker installed & running
+ 2. Make sure you have docker-compose installed
+
+For development, a docker-compose.override-example.yaml file with helpful settings you might need is provided.
+The file also opens a database port so you can connect to it with your local database client. 
+After copying the example file to docker-compose.override.yaml, Docker Compose will automatically apply the overrides. 
+You can freely modify the docker-compose.override.yaml file, as it's excluded from version control by being listed in .gitignore. 
+
+```
+cp docker-compose.override-example.yaml docker-compose.override.yaml
+```
+
+
+Start the entire application stack: 
+
+```
+docker compose up
+```
+
 ## Run Local (without Docker)
