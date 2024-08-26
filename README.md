@@ -8,7 +8,7 @@ I extended the challenge to enhance my skills in working with APIs and dockerizi
 
 ### Clone the repository
 
-First, clone the repository. Then, you can run the application either using Docker or locally (without Docker).
+First, clone the repository. Then, you can run the application either using Docker or local (without Docker).
 
 ```
 git clone https://github.com/Nella1a/nextjs-advice-generator.git
@@ -47,7 +47,28 @@ Ensure that you have a PostgreSQL instance running, then create a database and u
  GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
 ```
 
-     
-
 **Note:** The last command grants the user myuser full access to the database mydatabase.
+
+Install dependencies
+
+```
+npm run install
+```
+
+
+Run Prisma migrations
+
+```
+npx prisma migrate dev
+```
+
+
+Run application
+
+```
+npm run start
+```
+
+
+Open <http://localhost:3000> on your browser.
 
