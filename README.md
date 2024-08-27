@@ -50,35 +50,35 @@ cd nextjs-advice-generator
 
 #### Run Local (without Docker)
 
-Ensure that you have a PostgreSQL instance running, then create a database and user.
+1. Ensure that you have a PostgreSQL instance running, then create a database and user.
 
-```sql
- CREATE DATABASE mydatabase;
- CREATE USER myuser WITH PASSWORD 'mypassword';
- GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
-```
+   ```sql
+   CREATE DATABASE mydatabase;
+   CREATE USER myuser WITH PASSWORD 'mypassword';
+   GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
+   ```
 
-**Note:** The last command grants the user myuser full access to the database mydatabase.
+   **Note:** The last command grants the user myuser full access to the database mydatabase.
 
-Install dependencies
+2. Install dependencies
 
-```
-npm run install
-```
-
-
-Run Prisma migrations
-
-```
-npx prisma migrate dev
-```
+   ```
+   npm run install
+   ```
 
 
-Run application
+3. Run database migrations
 
-```
-npm run start
-```
+   ```
+   npx prisma migrate dev
+   ```
+
+
+4. Run application
+
+   ```
+   npm run start
+   ```
 
 
 Open <http://localhost:3000> on your browser.
