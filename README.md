@@ -8,7 +8,7 @@ I extended the challenge to enhance my skills in working with APIs and dockerizi
 
 ### Clone the repository
 
-First, clone the repository. Then, you can run the application either using Docker or local (without Docker).
+First, clone the repository. Then, you can run the application either using Docker or locally (without Docker).
 
 ```
 git clone https://github.com/Nella1a/nextjs-advice-generator.git
@@ -25,7 +25,7 @@ cd nextjs-advice-generator
 1. Create a .env file in the project’s root directory and set the environment variable for the database connection URL, for example:
 
    ```
-     DATABASE_URL=postgresql://user:password@mymydatabase
+     DATABASE_URL=postgresql://myuser:mypassword@mydatabase
    ```
 
 2. Create a db-pass.txt file in the docker/secrets directory and add your database password.
@@ -42,7 +42,7 @@ cd nextjs-advice-generator
     cp docker-compose.override-example.yaml docker-compose.override.yaml
     ```
 
-4. Start the entire application stack: 
+4. Start the entire application stack
 
     ```
     docker compose up
@@ -60,21 +60,27 @@ cd nextjs-advice-generator
 
    **Note:** The last command grants the user myuser full access to the database mydatabase.
 
-2. Install dependencies
+2. Create a .env file in the project’s root directory and set the environment variable for the database connection URL, for example:
+
+   ```
+     DATABASE_URL=postgresql://myuser:mypassword@localhost:5432/mydatabase
+   ```
+
+3. Install dependencies
 
    ```
    npm run install
    ```
 
 
-3. Run database migrations
+4. Run database migrations
 
    ```
    npx prisma migrate dev
    ```
 
 
-4. Run application
+5. Run application
 
    ```
    npm run start
@@ -82,6 +88,7 @@ cd nextjs-advice-generator
 
 
 Open <http://localhost:3000> on your browser.
+
 
 ## Technologies
 - Nextjs
