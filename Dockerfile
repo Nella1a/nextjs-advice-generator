@@ -10,7 +10,6 @@ WORKDIR /opt/frontend
 
 # copy folders & files
 COPY src ./src/
-COPY public ./public/
 COPY prisma ./prisma/
 COPY .eslintrc.json ./
 COPY next.config.mjs ./
