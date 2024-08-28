@@ -40,3 +40,5 @@ next-env.d.ts
 /docker/secrets/
 /docker/volumes
 /docker-compose.override.yaml
+
+steps.txt
