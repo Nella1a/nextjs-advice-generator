@@ -13,9 +13,11 @@ test('navigate to "random advice page" via button', async ({ page }) => {
   await expect(
     page.getByRole('heading', { name: 'Random Advice' }),
   ).toBeVisible();
-
-  expect(page.getByText('Press the button to receive your first advice.'))
-    .toBeVisible;
+  await expect(
+    page
+      .locator('div')
+      .filter({ hasText: 'Press the button to receive your first advice!' }),
+  ).toBeVisible();
 });
 
 test('navigate to "random advice page" via nav-link', async ({ page }) => {
