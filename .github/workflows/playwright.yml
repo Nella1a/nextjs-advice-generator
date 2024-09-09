@@ -1,16 +1,25 @@
 name: Playwright Tests
-env:
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  APP_ENV: test
+
 on:
   push:
     branches: [main, master, setup-end-to-end-testing-with-playwright]
   # pull_request:
   #   branches: [main, master]
+  
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:alpine
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+        ports: 
+          - 5432:5432
+          
     steps:
       - uses: actions/checkout@v4
       - run: docker compose -f docker-compose.yaml
@@ -21,8 +30,14 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Run Database Migrations
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       # - uses: actions/upload-artifact@v4
       #   if: always()
       #   with:
