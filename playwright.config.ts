@@ -74,6 +74,6 @@ export default defineConfig({
     command: 'APP_ENV=test npm run build && APP_ENV=test npm start',
     url: 'http://localhost:3000',
     timeout: 120000,
-    //reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.CI,
   },
 });
