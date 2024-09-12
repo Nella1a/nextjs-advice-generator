@@ -40,7 +40,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Database Migrations
-        run: npx prisma migrate
+        run: npx prisma migrate deploy
 
       - name: Run Playwright tests
         run: npx playwright test
