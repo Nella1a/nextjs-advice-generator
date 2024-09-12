@@ -4,7 +4,6 @@ services:
   frontend:
     environment:
       DATABASE_HOST: advice_app_db
-      PROJECT_ENV=test
     depends_on:
       - advice_app_db
 
