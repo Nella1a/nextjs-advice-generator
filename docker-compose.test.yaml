@@ -3,7 +3,9 @@ version: '3.7'
 services:
   frontend:
     environment:
+      DATABASE_URL: ${DATABASE_URL}
       DATABASE_HOST: advice_app_db
+      NODE_ENV: test
     depends_on:
       - advice_app_db
 
