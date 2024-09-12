@@ -15,4 +15,4 @@ services:
 
 secrets:
   db-pass:
-    file: docker/secrets/dev/db-pass.txt
+    file: docker/context/dev/db-pass.txt
