@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  frontend:
+    environment:
+      DATABASE_HOST: advice_app_db
+      PROJECT_ENV=test
+    depends_on:
+      - advice_app_db
+
+  advice_app_db:
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
+      POSTGRES_USER: admin
+      POSTGRES_DB: test_advice_app_db
+
+secrets:
+  db-pass:
+    file: docker/secrets/dev/db-pass.txt
