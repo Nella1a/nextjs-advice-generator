@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose -f docker-compose.yaml
+      - run: docker compose -f docker-compose.yaml up
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
