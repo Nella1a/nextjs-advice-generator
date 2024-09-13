@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml run --rm frontend opt/frontend/run-test.sh src
+      - run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml run --rm frontend run-test.sh src
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
