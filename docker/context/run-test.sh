@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# -x: enables debugging mode,causes Bash to print each command that it executes to the terminal, preceded by a + sign
-set -x
-
-# script to exit immediately when any command in the script fails
-set -e
-
 # Set DATABASE_HOST to 'advice_app_db' if not set
 DATABASE_HOST="${DATABASE_HOST:-test_advice_app_db}"
 
