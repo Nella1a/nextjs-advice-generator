@@ -29,11 +29,9 @@ cd nextjs-advice-generator
 2. Create a db-pass.txt file in the docker/secrets directory and add your database password.
 3. docker-compose.override.yaml
 
-   For development, a docker-compose.override-example.yaml file with helpful settings you might need is provided.
-   The file also opens a database port so you can connect to it with your local database client.
+   For development, a docker-compose.override-example.yaml is provided. The file also opens a database port so you can connect to it with your local database client.
    After copying the example file to docker-compose.override.yaml, Docker Compose will automatically apply the overrides.
    The docker-compose.yaml file runs a Next.js app along with a PostgreSQL database in a Docker stack.
-   You can freely modify the docker-compose.override.yaml file, as it's excluded from version control by being listed in .gitignore.
 
    ```
    cp docker-compose.override-example.yaml docker-compose.override.yaml
