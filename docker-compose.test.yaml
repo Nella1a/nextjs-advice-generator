@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
       POSTGRES_USER: admin
-      POSTGRES_DB: test_advice_app_db
+      POSTGRES_DB: advice_app_db
 
 secrets:
   db-pass:
