@@ -41,4 +41,12 @@ next-env.d.ts
 /docker/volumes
 /docker-compose.override.yaml
 
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/tests-examples
+
+# status
 steps.txt

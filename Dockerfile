@@ -20,6 +20,7 @@ COPY prisma.ts ./
 COPY tailwind.config.ts ./
 COPY tsconfig.json ./
 COPY docker/context/run.sh ./
+COPY docker/context/run-test.sh ./
 COPY docker/context/wait-for.sh ./
 
 RUN mkdir -p /opt/frontend/static && \
@@ -31,7 +32,7 @@ RUN NODE_ENV=development npm install
 RUN npx next telemetry disable
 
 # wait for db to start
-RUN chmod +x /opt/frontend/*.sh
+RUN chmod +x /opt/frontend/run.sh
 
 EXPOSE 3000
 CMD ./run.sh

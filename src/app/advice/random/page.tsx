@@ -61,7 +61,7 @@ const RandomAdvice = () => {
         <p className="w-full flex justify-center basis-2/5 items-start text-[20px] text-light-cyan m-auto font-semibold">
           {!data ? (
             <span className="text-light-cyan">
-              There is currently no advice!
+              Press the button to receive your first advice!
             </span>
           ) : isLoading ? (
             <span>is loading...</span>

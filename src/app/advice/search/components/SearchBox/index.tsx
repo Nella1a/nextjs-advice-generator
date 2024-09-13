@@ -17,6 +17,7 @@ const SearchBox = ({
       onKeyDown={(event) =>
         onEnterHandler && event.key === 'Enter' && onEnterHandler()
       }
+      data-testid={'search-box'}
     />
   );
 };
