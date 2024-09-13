@@ -20,6 +20,7 @@ COPY prisma.ts ./
 COPY tailwind.config.ts ./
 COPY tsconfig.json ./
 COPY docker/context/run.sh ./
+COPY docker/context/run-test.sh ./
 COPY docker/context/wait-for.sh ./
 
 RUN mkdir -p /opt/frontend/static && \
