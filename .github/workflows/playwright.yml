@@ -2,9 +2,9 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [main, master, setup-end-to-end-testing-with-playwright]
-  # pull_request:
-  #   branches: [main, master]
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -14,24 +14,22 @@ jobs:
     name: 'Playwright Tests'
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:alpine
-        env:
-          POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
-          POSTGRES_USER: ${{ secrets.DB_USER }}
-          POSTGRES_DB: ${{ secrets.DB_NAME }}
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+    # services:
+    #   postgres:
+    #     image: postgres:alpine
+    #     env:
+    #       POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
+    #       POSTGRES_USER: ${{ secrets.DB_USER }}
+    #       POSTGRES_DB: ${{ secrets.DB_NAME }}
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
 
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml run --rm frontend run-test.sh src
+      - run: docker compose -f docker-compose.yaml -f docker-compose.test.yaml up -d
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -41,7 +39,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Database Migrations
         run: npx prisma migrate deploy
-
       - name: Run Playwright tests
         run: npx playwright test
 
