@@ -14,6 +14,8 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
       POSTGRES_USER: admin
       POSTGRES_DB: advice_app_db
+    ports:
+      - 5432:5432
 
 secrets:
   db-pass:
