@@ -3,8 +3,6 @@
 # use docker-compose.override.yaml for local overrides
 # The .env file contains the variables referenced such aus ${DATABASE_URL}
 
-version: '3.7'
-
 services:
   frontend:
     build:
