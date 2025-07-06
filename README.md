@@ -23,7 +23,7 @@ cd nextjs-advice-generator
 1. Create a .env file in the project’s root directory and set the environment variable for the database connection URL, for example:
 
    ```
-     DATABASE_URL=postgresql://myuser:mypassword@mydatabase
+     DATABASE_URL="postgresql://myuser:mypassword@mydatabase"
    ```
 
 2. Create a db-pass.txt file in the docker/secrets directory and add your database password.
@@ -58,7 +58,7 @@ cd nextjs-advice-generator
 2. Create a .env file in the project’s root directory and set the environment variable for the database connection URL, for example:
 
    ```text
-     DATABASE_URL=postgresql://myuser:mypassword@localhost:5432/mydatabase
+     DATABASE_URL="postgresql://myuser:mypassword@localhost:5432/mydatabase"
    ```
 
 3. Install dependencies
