@@ -5,16 +5,24 @@ const Navigation = () => {
     <nav className="h-full max-w-screen-lg m-auto flex items-center">
       <ul className=" flex text-neon-green w-full mx-4 gap-4">
         <li className="hover:text-light-cyan">
-          <Link href="/">Home</Link>
+          <Link href="/" data-testid={'nav-link-home'}>
+            Home
+          </Link>
         </li>
         <li className="ml-auto hover:text-light-cyan">
-          <Link href="/advice/search">Search</Link>
+          <Link href="/advice/search" data-testid={'nav-link-search'}>
+            Search
+          </Link>
         </li>
         <li className="hover:text-light-cyan">
-          <Link href="/advice/random">Random</Link>
+          <Link href="/advice/random" data-testid={'nav-link-random'}>
+            Random
+          </Link>
         </li>
         <li className="hover:text-light-cyan">
-          <Link href="/saved">Saved</Link>
+          <Link href="/saved" data-testid={'nav-link-saved'}>
+            Saved
+          </Link>
         </li>
       </ul>
     </nav>

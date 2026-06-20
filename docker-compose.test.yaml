@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  frontend:
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_HOST: advice_app_db
+      NODE_ENV: test
+    depends_on:
+      - advice_app_db
+
+  advice_app_db:
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-pass
+      POSTGRES_USER: admin
+      POSTGRES_DB: advice_app_db
+    ports:
+      - 5432:5432
+
+secrets:
+  db-pass:
+    file: docker/context/dev/db-pass.txt
